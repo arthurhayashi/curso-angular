@@ -1,22 +1,46 @@
-var message = "its over Anakin I have the high ground";
-console.log(message);
-var episode = 4;
-console.log(episode);
-episode = episode + 1;
-console.log("Next episode is " + episode);
-var favoriteDroid;
-favoriteDroid = "R2-D2";
-console.log("My favorite droid is " + favoriteDroid);
-var isEnoghToBeatMf = function (parsec) {
-    return parsec < 12;
-};
-var distance = 14;
-console.log("Is " + distance + " parsec enough to beat Millenium Falcon? " + (isEnoghToBeatMf(distance) ? 'Yes' : 'No'));
-var call = function (name) { return console.log("Do you copy, " + name + " ?"); };
-call("Anakin");
-function inc(speed, inc) {
-    if (inc === void 0) { inc = 1; }
-    return speed + inc;
-}
-console.log(inc(5, 1));
-console.log(inc(5));
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
+var _ = require("lodash");
+console.log(_.pad("typescript exemples", 40, "="));
+var Spacecraft = (function () {
+    function Spacecraft(propulsor) {
+        this.propulsor = propulsor;
+    }
+    Spacecraft.prototype.jumpIntoHyperspace = function () {
+        console.log("Entering hyperspace: " + this.propulsor);
+    };
+    return Spacecraft;
+}());
+var ship = new Spacecraft('hyperdrive');
+ship.jumpIntoHyperspace();
+var MillenniumFalcon = (function (_super) {
+    __extends(MillenniumFalcon, _super);
+    function MillenniumFalcon() {
+        var _this = _super.call(this, 'hyperdrive') || this;
+        _this.cargoContainers = 4;
+        return _this;
+    }
+    MillenniumFalcon.prototype.jumpIntoHyperspace = function () {
+        if (Math.random() >= 0.5) {
+            _super.prototype.jumpIntoHyperspace.call(this);
+        }
+        else {
+            console.log("FAILED TO ENTER INTO HYPERSPACE");
+        }
+    };
+    return MillenniumFalcon;
+}(Spacecraft));
+var falcon = new MillenniumFalcon();
+falcon.jumpIntoHyperspace();
+var goodForJob = function (ship) { return ship.cargoContainers > 4; };
+console.log("Is falcon good for job " + (goodForJob ? 'yes' : 'no'));
